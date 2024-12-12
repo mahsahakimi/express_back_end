@@ -12,13 +12,11 @@ let problems = [
   {
     "title" : "yoyo",
     "content" : "Who is the most famous rapper in the hip-hop history?",
-    "options" : {
-        "0" : "Kendrick Lamar",
-        "1" : "Nas",
-        "2" : "Eminem",
-        "3" : "Reza Pishro"
-    },
-    "answer" : "2",
+    "option_1" : "Kendrick Lamar",
+    "option_2" : "Nas",
+    "option_3" : "Eminem",
+    "option_4" : "Reza Pishro",
+    "answer" : "3",
     "difficulty" : "Easy",
     "category" : "music",
     "author" : "emma2000",
@@ -27,13 +25,11 @@ let problems = [
   {
     "title" : "boom",
     "content" : "Where was 2024 olympics held?",
-    "options" : {
-        "0" : "Iran",
-        "1" : "Paris",
-        "2" : "America",
-        "3" : "Japan"
-    },
-    "answer" : "1",
+    "option_1" : "Iran",
+    "option_2" : "Paris",
+    "option_3" : "America",
+    "option_4" : "Japan",
+    "answer" : "2",
     "difficulty" : "Medium",
     "category" : "sport",
     "author" : "5",
@@ -42,13 +38,11 @@ let problems = [
   {
     "title" : "Add",
     "content" : "What is the sum of 4 + 3?",
-    "options" : {
-        "0" : "5",
-        "1" : "3",
-        "2" : "1",
-        "3" : "7"
-    },
-    "answer" : "3",
+    "option_1" : "5",
+    "option_2" : "3",
+    "option_3" : "1",
+    "option_4" : "7",
+    "answer" : "4",
     "difficulty" : "Easy",
     "category" : "math",
     "author" : "1",
@@ -56,10 +50,19 @@ let problems = [
   }
 ];
 
-// // READ - Get all problems
+// Get all problems
 app.get('/problems', (req, res) => {
   res.json(problems);
 });
+// Get a problem by name
+app.get('/problems/:title', (req, res) => {
+  const problem = problems.find(element => element.title === req.params.title);
+  if (!problem) {
+    return res.status(404).json({message: "Problem not found!"})
+  }
+  res.json(problem);
+});
+
 
 let teachers = [
   {
