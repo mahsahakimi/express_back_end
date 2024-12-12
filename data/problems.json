@@ -11,7 +11,8 @@
         "answer" : "2",
         "difficulty" : "Easy",
         "category" : "music",
-        "author" : "2"
+        "author" : "2",
+        "solved" : "25"
     },
     "1" : {
         "title" : "boom",
@@ -25,6 +26,22 @@
         "answer" : "1",
         "difficulty" : "Medium",
         "category" : "sport",
-        "author" : "5"
+        "author" : "5",
+        "solved" : "20"
+    },
+    "2" : {
+        "title" : "Add",
+        "content" : "What is the sum of 4 + 3?",
+        "options" : {
+            "0" : "5",
+            "1" : "3",
+            "2" : "1",
+            "3" : "7"
+        },
+        "answer" : "3",
+        "difficulty" : "Easy",
+        "category" : "math",
+        "author" : "1",
+        "solved" : "30"
     }
 }

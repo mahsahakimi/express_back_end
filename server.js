@@ -21,7 +21,8 @@ let problems = [
     "answer" : "2",
     "difficulty" : "Easy",
     "category" : "music",
-    "author" : "2"
+    "author" : "emma2000",
+    "solved" : "25"
   },
   {
     "title" : "boom",
@@ -35,13 +36,80 @@ let problems = [
     "answer" : "1",
     "difficulty" : "Medium",
     "category" : "sport",
-    "author" : "5"
+    "author" : "5",
+    "solved" : "20"
+  },
+  {
+    "title" : "Add",
+    "content" : "What is the sum of 4 + 3?",
+    "options" : {
+        "0" : "5",
+        "1" : "3",
+        "2" : "1",
+        "3" : "7"
+    },
+    "answer" : "3",
+    "difficulty" : "Easy",
+    "category" : "math",
+    "author" : "1",
+    "solved" : "30"
   }
-]
+];
 
 // // READ - Get all problems
 app.get('/problems', (req, res) => {
   res.json(problems);
+});
+
+let teachers = [
+  {
+    "name" : "Emma Williams",
+    "created" : "13",
+    "username" : "emma2000"    
+  },
+  {
+    "name" : "John Doe",
+    "created" : "2",
+    "username" : "johndoe"
+  },
+  {
+    "name" : "Jane Smith",
+    "created" : "0",
+    "username" : "janeee"
+  },
+  {
+    "name" : "Alex Johnson",
+    "created" : "5",
+    "username" : "alexjj"
+  }
+];
+
+// // READ - Get all teachers
+app.get('/teachers', (req, res) => {
+  res.json(teachers);
+});
+
+let students = [
+  {
+    "name" : "Mehdi Amini",
+    "score" : "36",
+    "username" : "mehdiii"    
+  },
+  {
+    "name" : "Sahar Almasi",
+    "score" : "97",
+    "username" : "almasi83"
+  },
+  {
+    "name" : "Misagh Rasoli",
+    "score" : "0",
+    "username" : "mis4gh"
+  }
+];
+
+// // READ - Get all students
+app.get('/students', (req, res) => {
+  res.json(students);
 });
 
 // // app.use('/login', (req, res) => {
