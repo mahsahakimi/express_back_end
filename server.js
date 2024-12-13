@@ -117,9 +117,6 @@ app.get('/students', (req, res) => {
 
 app.post('/signup', (req, res) => {
   console.log(req.message);
-  // res.json({
-  //   token: 'test123'
-  // });
 });
 
 let tokens = [
@@ -132,6 +129,14 @@ let tokens = [
 
 // Add a new user
 app.put('/signup', (req, res) => {
+  tokens.forEach(element => {
+    if (element.type === req.body.type) {
+      if (element.username === req.body.username) {
+        res.status(404).json({ message: 'User is alredy exist' });
+      }
+    }
+  });
+
   if (req.body.type === 't') {
     let newUser = {
       "name": req.body.username,
