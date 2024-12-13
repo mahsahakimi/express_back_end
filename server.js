@@ -115,11 +115,21 @@ app.get('/students', (req, res) => {
   res.json(students);
 });
 
-// // app.use('/login', (req, res) => {
-// //     res.send({
-// //       token: 'test123'
-// //     });
-// //   });
+app.post('/signup', (req, res) => {
+  console.log(req.message);
+  // res.json({
+  //   token: 'test123'
+  // });
+});
+
+
+app.post('/login', (req, res) => {
+  res.json({
+    token: 'test123'
+  });
+});
+
+
 
 // //   app.get('/add/:a/:b', (req, res) => {
 // //     // res.send('<h1>Hello!</h1>');
