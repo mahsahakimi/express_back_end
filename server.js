@@ -139,6 +139,11 @@ let tokens = [
     "username" : "mmd",
     "password" : "123",
     "type" : "t" 
+  },
+  {
+    "username" : "mis4gh",
+    "password" : "123",
+    "type" : "s" 
   }
 ];
 
