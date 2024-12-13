@@ -96,23 +96,38 @@ let students = [
   {
     "name" : "Mehdi Amini",
     "score" : "36",
-    "username" : "mehdiii"    
+    "username" : "mehdiii",
+    "followers" : ["almasi83"],
+    "following" : ["mis4gh"]
   },
   {
     "name" : "Sahar Almasi",
     "score" : "97",
-    "username" : "almasi83"
+    "username" : "almasi83",
+    "followers" : [],
+    "following" : ["mis4gh", "mehdiii"]
   },
   {
     "name" : "Misagh Rasoli",
     "score" : "0",
-    "username" : "mis4gh"
+    "username" : "mis4gh",
+    "followers" : ["almasi83", "mehdiii"],
+    "following" : []
   }
 ];
 
-// // READ - Get all students
+// Get all students
 app.get('/students', (req, res) => {
   res.json(students);
+});
+
+// Get a student
+app.get('/students/:username', (req, res) => {
+  const student = students.find(element => element.username === req.params.username);
+  if (!student) {
+    return res.status(404).json({message: "Student not found!"})
+  }
+  res.json(student);
 });
 
 app.post('/signup', (req, res) => {
@@ -141,7 +156,7 @@ app.put('/signup', (req, res) => {
     let newUser = {
       "name": req.body.username,
       "created": "0",
-      "username": req.body.username,
+      "username": req.body.username
     };
     teachers.push(newUser);
   } else {
@@ -149,6 +164,9 @@ app.put('/signup', (req, res) => {
       "name": req.body.username,
       "score": "0",
       "username": req.body.username,
+      "followers": [],
+      "following": []
+      
     };
     students.push(newUser);
   }
