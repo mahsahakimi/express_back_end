@@ -157,9 +157,22 @@ app.put('/signup', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  res.json({
-    token: 'test123'
+  let token = {
+    "username": req.body.username,
+    "password": req.body.password,
+    "type": req.body.type
+  };
+
+  tokens.forEach(element => {
+    if (element.type === token.type) {
+      if (element.username === token.username) {
+        if (element.password === token.password) {
+          return res.status(200).json(token);
+        }
+      }
+    }
   });
+  res.status(404).json({ message: 'User not found' });
 });
 
 
