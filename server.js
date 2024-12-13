@@ -122,6 +122,39 @@ app.post('/signup', (req, res) => {
   // });
 });
 
+let tokens = [
+  {
+    "username" : "mmd",
+    "password" : "123",
+    "type" : "t" 
+  }
+];
+
+// Add a new user
+app.put('/signup', (req, res) => {
+  if (req.body.type === 't') {
+    let newUser = {
+      "name": req.body.username,
+      "created": "0",
+      "username": req.body.username,
+    };
+    teachers.push(newUser);
+  } else {
+    let newUser = {
+      "name": req.body.username,
+      "score": "0",
+      "username": req.body.username,
+    };
+    students.push(newUser);
+  }
+  const newToken = {
+      "username": req.body.username,
+      "password": req.body.password,
+      "type": req.body.type
+  };
+  tokens.push(newToken);
+  res.status(201).json(newToken);
+});
 
 app.post('/login', (req, res) => {
   res.json({
