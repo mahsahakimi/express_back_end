@@ -67,9 +67,9 @@ app.get('/problems/:title', (req, res) => {
 
 let teachers = [
   {
-    "name" : "Emma Williams",
+    "name" : "Mohammad Faridi",
     "created" : "13",
-    "username" : "emma2000",
+    "username" : "mmd",
     "followers" : "0",
     "followings" : "0"   
   },
