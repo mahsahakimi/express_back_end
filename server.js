@@ -54,6 +54,7 @@ let problems = [
 app.get('/problems', (req, res) => {
   res.json(problems);
 });
+
 // Get a problem by name
 app.get('/problems/:title', (req, res) => {
   const problem = problems.find(element => element.title === req.params.title);
@@ -87,7 +88,7 @@ let teachers = [
   }
 ];
 
-// // READ - Get all teachers
+// Get all teachers
 app.get('/teachers', (req, res) => {
   res.json(teachers);
 });
@@ -97,22 +98,22 @@ let students = [
     "name" : "Mehdi Amini",
     "score" : "36",
     "username" : "mehdiii",
-    "followers" : ["almasi83"],
-    "following" : ["mis4gh"]
+    "followers" : "1",
+    "followings" : "1"
   },
   {
     "name" : "Sahar Almasi",
     "score" : "97",
     "username" : "almasi83",
-    "followers" : [],
-    "following" : ["mis4gh", "mehdiii"]
+    "followers" : "0",
+    "followings" : "2"
   },
   {
     "name" : "Misagh Rasoli",
     "score" : "0",
     "username" : "mis4gh",
-    "followers" : ["almasi83", "mehdiii"],
-    "following" : []
+    "followers" : "2",
+    "followings" : "0"
   }
 ];
 
@@ -121,7 +122,7 @@ app.get('/students', (req, res) => {
   res.json(students);
 });
 
-// Get a student
+// Get a student by username
 app.get('/students/:username', (req, res) => {
   const student = students.find(element => element.username === req.params.username);
   if (!student) {
@@ -130,9 +131,9 @@ app.get('/students/:username', (req, res) => {
   res.json(student);
 });
 
-app.post('/signup', (req, res) => {
-  console.log(req.message);
-});
+// app.post('/signup', (req, res) => {
+//   console.log(req.message);
+// });
 
 let tokens = [
   {
@@ -169,8 +170,8 @@ app.put('/signup', (req, res) => {
       "name": req.body.username,
       "score": "0",
       "username": req.body.username,
-      "followers": [],
-      "following": []
+      "followers": "0",
+      "followings": "0"
       
     };
     students.push(newUser);
@@ -184,6 +185,7 @@ app.put('/signup', (req, res) => {
   res.status(201).json(newToken);
 });
 
+// login check
 app.post('/login', (req, res) => {
   let token = {
     "username": req.body.username,
@@ -203,16 +205,8 @@ app.post('/login', (req, res) => {
   res.status(404).json({ message: 'User not found' });
 });
 
-
-
-// //   app.get('/add/:a/:b', (req, res) => {
-// //     // res.send('<h1>Hello!</h1>');
-// //     res.json({'ans' : 5});
-// //   })
-
-const PORT = 8081;
-// app.listen(PORT, () => console.log('API is running on http://localhost:' + PROT + '/login'));
 // Start the server
+const PORT = 8081;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
