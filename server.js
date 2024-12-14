@@ -69,28 +69,45 @@ let teachers = [
   {
     "name" : "Emma Williams",
     "created" : "13",
-    "username" : "emma2000"    
+    "username" : "emma2000",
+    "followers" : "0",
+    "followings" : "0"   
   },
   {
     "name" : "John Doe",
     "created" : "2",
-    "username" : "johndoe"
+    "username" : "johndoe",
+    "followers" : "1",
+    "followings" : "1"
   },
   {
     "name" : "Jane Smith",
     "created" : "0",
-    "username" : "janeee"
+    "username" : "janeee",
+    "followers" : "0",
+    "followings" : "2"
   },
   {
     "name" : "Alex Johnson",
     "created" : "5",
-    "username" : "alexjj"
+    "username" : "alexjj",
+    "followers" : "0",
+    "followings" : "2"
   }
 ];
 
 // Get all teachers
 app.get('/teachers', (req, res) => {
   res.json(teachers);
+});
+
+// Get a teacher by username
+app.get('/teachers/:username', (req, res) => {
+  const teacher = teachers.find(element => element.username === req.params.username);
+  if (!teacher) {
+    return res.status(404).json({message: "Teacher not found!"})
+  }
+  res.json(teacher);
 });
 
 let students = [
