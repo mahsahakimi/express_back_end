@@ -19,7 +19,7 @@ let problems = [
     "answer" : "3",
     "difficulty" : "Easy",
     "category" : "music",
-    "author" : "emma2000",
+    "author" : "mmd",
     "solved" : "25"
   },
   {
@@ -32,7 +32,7 @@ let problems = [
     "answer" : "2",
     "difficulty" : "Medium",
     "category" : "sport",
-    "author" : "5",
+    "author" : "mmd",
     "solved" : "20"
   },
   {
@@ -45,7 +45,7 @@ let problems = [
     "answer" : "4",
     "difficulty" : "Easy",
     "category" : "math",
-    "author" : "1",
+    "author" : "alexjj",
     "solved" : "30"
   }
 ];
@@ -53,6 +53,19 @@ let problems = [
 // Get all problems
 app.get('/problems', (req, res) => {
   res.json(problems);
+});
+
+// Get all problems by author
+app.get('/problems/:author', (req, res) => {
+  const _problems = [];
+  problems.forEach(element => {
+    if(element.author === req.params.author)
+      _problems.push(element);
+  });
+  if (!_problems) {
+    return res.json({message: "Problem not found!"})
+  }
+  res.json(_problems);
 });
 
 // Get a problem by name
@@ -68,7 +81,7 @@ app.get('/problems/:title', (req, res) => {
 let teachers = [
   {
     "name" : "Mohammad Faridi",
-    "created" : "13",
+    "created" : "2",
     "username" : "mmd",
     "followers" : "0",
     "followings" : "0"   
