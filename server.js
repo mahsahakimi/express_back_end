@@ -77,6 +77,32 @@ app.get('/problems/:title', (req, res) => {
   res.json(problem);
 });
 
+// check problem answer
+app.post('/problems/checkproblem/:username', (req, res) => {
+  const problem = problems.find((element) => {
+    if (element.title === req.body.Title)
+    {
+      if (element.answer === req.body.Answer)
+      {
+        const student = students.find(stu => stu.username === req.params.username);
+        const alredySolved = (student.solved).find((t) => (t === req.body.Title));
+        if (!alredySolved) {
+          student.solved.push(req.body.Title);
+          return res.json({message: "Correct!"})
+        }
+        else
+          return res.json({message: "Problem alredy solved!"});
+      }
+      else
+        return res.json({message: "False!"})
+    }
+  });
+
+  if (!problem) {
+    return res.status(404).json({message: "Problem not found!"})
+  }
+});
+
 
 let teachers = [
   {
@@ -178,10 +204,6 @@ app.get('/students/:username/solved', (req, res) => {
   res.json(solvedProblems);
 });
 
-// app.post('/signup', (req, res) => {
-//   console.log(req.message);
-// });
-
 let tokens = [
   {
     "username" : "mmd",
@@ -196,7 +218,7 @@ let tokens = [
 ];
 
 // Add a new user
-app.put('/signup', (req, res) => {
+app.post('/signup', (req, res) => {
   tokens.forEach(element => {
     if (element.type === req.body.type) {
       if (element.username === req.body.username) {
@@ -207,7 +229,7 @@ app.put('/signup', (req, res) => {
 
   if (req.body.type === 't') {
     let newUser = {
-      "name": req.body.username,
+      "name": req.body.name,
       "created": "0",
       "username": req.body.username,
       "followers": "0",
@@ -216,12 +238,11 @@ app.put('/signup', (req, res) => {
     teachers.push(newUser);
   } else {
     let newUser = {
-      "name": req.body.username,
+      "name": req.body.name,
       "score": "0",
       "username": req.body.username,
       "followers": "0",
       "followings": "0"
-      
     };
     students.push(newUser);
   }
@@ -252,6 +273,35 @@ app.post('/login', (req, res) => {
     }
   });
   res.status(404).json({ message: 'User not found' });
+});
+
+// Add a new problem
+app.post('/saveproblem', (req, res) => {
+  let flag = true;
+  problems.forEach(element => {
+    if (element.title === req.body.Title) {
+      flag = false;
+      return res.status(404).json({ message: 'Problem name is alredy exist' });
+    }
+  });
+  if (flag) {
+    const newProblem = {
+      "title" : req.body.Title,
+      "content" : req.body.Content,
+      "option_1" : req.body.Op1,
+      "option_2" : req.body.Op2,
+      "option_3" : req.body.Op3,
+      "option_4" : req.body.Op4,
+      "answer" : req.body.Answer,
+      "difficulty" : req.body.Difficulty,
+      "category" : req.body.Category,
+      "author" : req.body.authContext,
+      "solved" : "0"
+    };
+  
+    problems.push(newProblem);
+    res.status(201).json(newProblem);
+  }
 });
 
 // Start the server
