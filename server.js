@@ -130,10 +130,7 @@ let students = [
     "username" : "mehdiii",
     "followers" : "1",
     "followings" : "1",
-    "solved" : {
-      "0" : "yoyo",
-      "1" : "boom"
-    }
+    "solved" : ["yoyo", "boom"]
   },
   {
     "name" : "Sahar Almasi",
@@ -141,8 +138,7 @@ let students = [
     "username" : "almasi83",
     "followers" : "0",
     "followings" : "2",
-    "solved" : {
-    }
+    "solved" : []
   },
   {
     "name" : "Misagh Rasoli",
@@ -150,11 +146,7 @@ let students = [
     "username" : "mis4gh",
     "followers" : "2",
     "followings" : "0",
-    "solved" : {
-      "0" : "Add",
-      "1" : "boom",
-      "2" : "yoyo"
-    }
+    "solved" : ["Add", "boom", "yoyo"]
   }
 ];
 
@@ -178,9 +170,12 @@ app.get('/students/:username/solved', (req, res) => {
   if (!student) {
     return res.status(404).json({message: "Student not found!"})
   }
-
-  const solved = student.solved
-  res.json(solved);
+  const solved = student.solved;
+  const solvedProblems = [];
+  solved.forEach(elementName => {
+    solvedProblems.push(problems.find(element => element.title === elementName));
+  });
+  res.json(solvedProblems);
 });
 
 // app.post('/signup', (req, res) => {
