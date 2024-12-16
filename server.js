@@ -192,7 +192,9 @@ app.put('/signup', (req, res) => {
     let newUser = {
       "name": req.body.username,
       "created": "0",
-      "username": req.body.username
+      "username": req.body.username,
+      "followers": "0",
+      "followings": "0"
     };
     teachers.push(newUser);
   } else {
