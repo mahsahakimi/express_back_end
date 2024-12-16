@@ -92,7 +92,6 @@ app.post('/saveproblem', (req, res) => {
 ## Running the Server
 To start the server, use the following code in the root directory:
 ```bash
-nose server.js
-});
+node server.js
 ```
 Ensure that you have all necessary dependencies installed and run the server using Node.js. Access the API at http://localhost:8081.
