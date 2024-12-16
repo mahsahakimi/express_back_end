@@ -126,24 +126,35 @@ app.get('/teachers/:username', (req, res) => {
 let students = [
   {
     "name" : "Mehdi Amini",
-    "score" : "36",
+    "score" : "2",
     "username" : "mehdiii",
     "followers" : "1",
-    "followings" : "1"
+    "followings" : "1",
+    "solved" : {
+      "0" : "yoyo",
+      "1" : "boom"
+    }
   },
   {
     "name" : "Sahar Almasi",
-    "score" : "97",
+    "score" : "0",
     "username" : "almasi83",
     "followers" : "0",
-    "followings" : "2"
+    "followings" : "2",
+    "solved" : {
+    }
   },
   {
     "name" : "Misagh Rasoli",
-    "score" : "0",
+    "score" : "3",
     "username" : "mis4gh",
     "followers" : "2",
-    "followings" : "0"
+    "followings" : "0",
+    "solved" : {
+      "0" : "Add",
+      "1" : "boom",
+      "2" : "yoyo"
+    }
   }
 ];
 
@@ -159,6 +170,17 @@ app.get('/students/:username', (req, res) => {
     return res.status(404).json({message: "Student not found!"})
   }
   res.json(student);
+});
+
+// Get a student's solved problems by username
+app.get('/students/:username/solved', (req, res) => {
+  const student = students.find(element => element.username === req.params.username);
+  if (!student) {
+    return res.status(404).json({message: "Student not found!"})
+  }
+
+  const solved = student.solved
+  res.json(solved);
 });
 
 // app.post('/signup', (req, res) => {
