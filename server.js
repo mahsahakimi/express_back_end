@@ -50,6 +50,77 @@ let problems = [
   }
 ];
 
+let teachers = [
+  {
+    "name" : "Mohammad Faridi",
+    "created" : "2",
+    "username" : "mmd",
+    "followers" : "0",
+    "followings" : "0"   
+  },
+  {
+    "name" : "John Doe",
+    "created" : "2",
+    "username" : "johndoe",
+    "followers" : "1",
+    "followings" : "1"
+  },
+  {
+    "name" : "Jane Smith",
+    "created" : "0",
+    "username" : "janeee",
+    "followers" : "0",
+    "followings" : "2"
+  },
+  {
+    "name" : "Alex Johnson",
+    "created" : "5",
+    "username" : "alexjj",
+    "followers" : "0",
+    "followings" : "2"
+  }
+];
+
+let students = [
+  {
+    "name" : "Mehdi Amini",
+    "score" : "2",
+    "username" : "mehdiii",
+    "followers" : "1",
+    "followings" : "1",
+    "solved" : ["yoyo", "boom"]
+  },
+  {
+    "name" : "Sahar Almasi",
+    "score" : "0",
+    "username" : "almasi83",
+    "followers" : "0",
+    "followings" : "2",
+    "solved" : []
+  },
+  {
+    "name" : "Misagh Rasoli",
+    "score" : "3",
+    "username" : "mis4gh",
+    "followers" : "2",
+    "followings" : "0",
+    "solved" : ["Add", "boom", "yoyo"]
+  }
+];
+
+let tokens = [
+  {
+    "username" : "mmd",
+    "password" : "123",
+    "type" : "t" 
+  },
+  {
+    "username" : "mis4gh",
+    "password" : "123",
+    "type" : "s" 
+  }
+];
+
 // Get all problems
 app.get('/problems', (req, res) => {
   res.json(problems);
@@ -103,38 +174,6 @@ app.post('/problems/checkproblem/:username', (req, res) => {
   }
 });
 
-
-let teachers = [
-  {
-    "name" : "Mohammad Faridi",
-    "created" : "2",
-    "username" : "mmd",
-    "followers" : "0",
-    "followings" : "0"   
-  },
-  {
-    "name" : "John Doe",
-    "created" : "2",
-    "username" : "johndoe",
-    "followers" : "1",
-    "followings" : "1"
-  },
-  {
-    "name" : "Jane Smith",
-    "created" : "0",
-    "username" : "janeee",
-    "followers" : "0",
-    "followings" : "2"
-  },
-  {
-    "name" : "Alex Johnson",
-    "created" : "5",
-    "username" : "alexjj",
-    "followers" : "0",
-    "followings" : "2"
-  }
-];
-
 // Get all teachers
 app.get('/teachers', (req, res) => {
   res.json(teachers);
@@ -148,33 +187,6 @@ app.get('/teachers/:username', (req, res) => {
   }
   res.json(teacher);
 });
-
-let students = [
-  {
-    "name" : "Mehdi Amini",
-    "score" : "2",
-    "username" : "mehdiii",
-    "followers" : "1",
-    "followings" : "1",
-    "solved" : ["yoyo", "boom"]
-  },
-  {
-    "name" : "Sahar Almasi",
-    "score" : "0",
-    "username" : "almasi83",
-    "followers" : "0",
-    "followings" : "2",
-    "solved" : []
-  },
-  {
-    "name" : "Misagh Rasoli",
-    "score" : "3",
-    "username" : "mis4gh",
-    "followers" : "2",
-    "followings" : "0",
-    "solved" : ["Add", "boom", "yoyo"]
-  }
-];
 
 // Get all students
 app.get('/students', (req, res) => {
@@ -203,19 +215,6 @@ app.get('/students/:username/solved', (req, res) => {
   });
   res.json(solvedProblems);
 });
-
-let tokens = [
-  {
-    "username" : "mmd",
-    "password" : "123",
-    "type" : "t" 
-  },
-  {
-    "username" : "mis4gh",
-    "password" : "123",
-    "type" : "s" 
-  }
-];
 
 // Add a new user
 app.post('/signup', (req, res) => {
