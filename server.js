@@ -188,7 +188,7 @@ app.get('/students/:username/solved', async (req, res) => {
   }
 });
 
-
+// Add a solved question for a student
 app.put("/addsolved", async (req, res) => {
   try {
     const { username, problemTitle } = req.body;
@@ -274,6 +274,7 @@ app.post("/saveproblem", async (req, res) => {
   }
 });
 
+// Update a problem
 app.put("/updateproblem/:title", async (req, res) => {
   try {
     const { title } = req.params;
